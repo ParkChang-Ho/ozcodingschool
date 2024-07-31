@@ -1,0 +1,19 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #eaeaea;
+}
+
+
+.form-select{
+    margin-left: auto;
+    color: black;
+}
+
+.col-auto{
+    margin-right: 200px;
+}
+
+p{
+    color: red;
+}

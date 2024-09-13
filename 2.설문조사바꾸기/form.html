@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="IE=edge">
+        <title>설문조사 양식</title>
+    </head>
+    <body>
+        <header>
+        <h1>설문조사 양식</h1>
+        <p>모든 항목에 빠짐없이 체크해주십시오.</p>
+        </header>
+        <hr>
+        <main>
+            <form> 
+                <fieldset>
+                    <legend>개인정보</legend>
+                    <label for="id">아이디</label>
+                    <input type="text" 
+                    name="id"
+                    id="name" placeholder="아이디를 입력하세요">
+                    <br>
+                    <label for="password">비밀번호</label>
+                    <input type="text" 
+                    name="password"
+                    id="password" placeholder="패스워드를 입력하세요">
+                    
+
+                </fieldset>
+                <fieldset>
+                    <legend>설문</legend>
+
+                    <p>좋아하는 음악장르는 무엇입니까?</p>
+                    <input type="radio" id="ballrad" name="music">
+                    <label for="ballrad">발라드</label>
+                    <input type="radio" id="rock" name="music">
+                    <label for="rock">락</label>
+                    <input type="radio" id="hiphop" name="music">
+                    <label for="hiphop">힙합</label>
+                    <input type="radio" id="dance" name="music">
+                    <label for="dance">댄스</label>
+                    <input type="radio" id="jazz" name="music">
+                    <label for="jazz">재즈</label>
+                    <input type="radio" id="other" name="music">
+                    <label for="other">그외</label>
+                    
+                    <p>음악 구매 시 드는 비용은 얼마입니까?</p>
+                    <input type="radio" id="five" name="price">
+                    <label for="five">5만원</label>
+                    <input type="radio" id="ten" name="price">
+                    <label for="ten">10만원</label>
+                    <input type="radio" id="fifteen" name="price">
+                    <label for="fifteen">15만원</label>
+                    <input type="radio" id="twelve" name="price">
+                    <label for="twelve">20만원</label>
+                    <input type="radio" id="max" name="price">
+                    <label for="max">그이상</label>
+
+                    <p>음악을 어디에서 구매하십니까?(중복가능)</p>
+                    <input type="checkbox" id="bookstore" name="place">
+                    <label for="bookstore">서점</label>
+                    <input type="checkbox" id="musicstore" name="place">
+                    <label for="musicstore">음악판매점</label>
+                    <input type="checkbox" id="street" name="place">
+                    <label for="street">길거리</label>
+                    <input type="checkbox" id="online" name="place">
+                    <label for="online">온라인</label>
+                    <input type="checkbox" id="others" name="place">
+                    <label for="others">그외</label>
+                    
+                </fieldset>
+                <fieldset>
+                    <legend>기타 의견</legend>
+                    <textarea rows="3" cols="30" name="comment"></textarea>
+                </fieldset>
+                <input type="submit">
+            </form>
+        </main>
+        <hr>
+        <footer>
+        <p>입력하느라 수고하셨습니다.</p>
+        </footer>
+    </body>
+</html>

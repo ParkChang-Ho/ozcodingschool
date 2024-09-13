@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>Admin Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="index01.css" rel="stylesheet">
+</head>
+<body>   
+		<div class="cot-3">
+        <h3 class="mt-5 mb-3">신규 등록 상품</h3>
+        <!-- 현재 시간 -->
+        <div id="date-time" class="mb-4 text-end" ></div>
+        
+        <!--mb-4 text-end -->
+        <form class="row row-cols-lg-auto g-3 align-items-center">      
+            <div class="col-12">
+              <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+              <select class="form-select form-select-sm" aria-label="Small select example" id="inlineFormSelectPref" autocomplete="off">
+                <!-- 카테고리 셀렉트 코드를 넣어주세요-->
+                 <option selected>카테고리</option>
+                 <option value="1">상의</option>
+                 <option value="2">하의</option>
+                 <option value="3">신발</option>
+                 <option value="4">패션잡화</option>
+              </select>
+            </div>
+            <div class="col-lg-auto mb-3 mb-lg-0">
+                <!-- input 입력창 코드를 넣어주세요 -->
+                <input class="form-control" type="text" placeholder="제품명을 입력해주세요.">
+              </div>
+              <div class="col-auto">
+                <!-- 조회버튼 코드를 넣어주세요 -->
+                <a class="btn btn-primary" href="#" role="button">조회</a>
+              </div>
+               <!-- 성별 -->
+               <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                <label class="btn btn-outline-primary" for="btnradio1">남자</label>
+              
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio2">여자</label>
+                <!-- 회원가입버튼 -->
+
+                <div class="col-auto">
+                    <a class="btn btn-primary" href="join01.html" role="button">회원가입</a>
+                </div>
+            </div>
+          </form>
+          <div class="container mt-3">
+        <table class="table table-hover">
+            <!-- 열의 속성값을 나타내는 코드를 작성해주세요 (예 : 카테고리, 브랜드, 상품명, 가격) -->
+            <thead>
+                <th scope="col">카테고리</th>
+                <th scope="col">브랜드</th>
+                <th scope="col">상품명</th>
+                <th scope="col">가격</th>
+                
+            </thead>
+            <tbody id="data-table">
+                <!-- 추후 크롤링한 데이터가 들어가는 자리 -->
+            </tbody>
+        </table>
+	    </div>
+    </div>
+    <!--다크모드-->
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+        <label class="form-check-label" for="flexSwitchCheckChecked">다크모드 전환</label>
+    </div>
+
+    <!-- 페이지 네이션 코드를 넣어주세요 -->
+    <nav aria-label="...">
+        <ul class="pagination  justify-content-center">
+            <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+   <script>
+      // 크롤링한 데이터를 아래와 같은 형태의 객체 배열로 가정합니다.
+      // 추후 데이터베이스에 있는 데이터를 쿼리문으로 불러 올 수 있게 쿼리르 작성해 볼 수 있음
+      const data = [
+          { category: "상의", brand: 'Supreme', product: '슈프림 박스로고 후드티', price: '390,000' },
+          { category: "하의", brand: 'DIESEL', product: '디젤 트랙 팬츠', price: '188,000' },
+          { category: "신발", brand: 'Nike', product: '에어포스 1', price: '137,000' },
+          { category: "패션잡화", brand: 'Music&Goods', product: '빵빵이 키링', price: '29,000' },
+          // ...
+      ];
+      
+      const dataTable = document.getElementById('data-table');
+      
+      data.forEach((item) => {
+          const row = dataTable.insertRow();
+          row.insertCell(0).innerHTML = item.category;
+          row.insertCell(1).innerHTML = item.brand;
+          row.insertCell(2).innerHTML = item.product;
+          row.insertCell(3).innerHTML = item.price;
+      });
+    //현재 시간 업데이트 기능 
+    function updateDateTime() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            const formattedDate = now.toLocaleString('ko-KR', options);
+            document.getElementById('date-time').innerText = `현재 날짜 및 시간: ${formattedDate}`;
+        }
+
+        // 날짜 함수 호출
+        updateDateTime();
+
+        // 매초마다 업데이트
+        setInterval(updateDateTime, 1000);
+      // 다크모드 페이지 로드
+      if (!document.documentElement.hasAttribute("data-bs-theme")) {
+            document.documentElement.setAttribute("data-bs-theme", "light"); // or "dark" based on your preference
+        }
+
+        document.getElementById("flexSwitchCheckChecked").addEventListener('change', function() {
+            const currentTheme = document.documentElement.getAttribute("data-bs-theme");
+            const newTheme = currentTheme === "light" ? "dark" : "light";
+            document.documentElement.setAttribute("data-bs-theme", newTheme);
+        });
+
+        // 데이터가 보이도록
+        displayData();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
